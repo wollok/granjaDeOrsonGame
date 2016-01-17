@@ -17,23 +17,31 @@ program FarmvilleGame {
 //	ARBUSTOS
 	val ancho = wgame.getWidth() - 1
 	val largo = wgame.getHeight() - 1
-
-	(1 .. ancho-1).forEach { n => new ArbustoAbajo(new Position(n, 0)) } // bordeAbajo
-	(1 .. ancho-1).forEach { n => new ArbustoArriba(new Position(n, largo)) } // bordeArriba 
-	(0 .. largo).forEach { n => new ArbustoIzquierda(new Position(0, n)) } // bordeIzq 
-	(0 .. largo).forEach { n => new ArbustoDerecha(new Position(ancho, n)) } // bordeDer
+	val arbustoFactory = object {
+		method draw(arbusto, posicion) {
+			posicion.drawElement(arbusto)
+			wgame.whenCollideDo(arbusto, { granjero => arbusto.empuja(granjero) })
+		}
+	}
+	
+	(1 .. ancho-1).forEach { n => arbustoFactory.draw(new ArbustoAbajo(),new Position(n, 0)) } // bordeAbajo
+	(1 .. ancho-1).forEach { n => arbustoFactory.draw(new ArbustoArriba(), new Position(n, largo)) } // bordeArriba 
+	(0 .. largo).forEach { n => arbustoFactory.draw(new ArbustoIzquierda(), new Position(0, n)) } // bordeIzq 
+	(0 .. largo).forEach { n => arbustoFactory.draw(new ArbustoDerecha(), new Position(ancho, n)) } // bordeDer
 	
 //	TECLADO
 	NUM_1.onPressCharacterSay{"Presiona la tecla 'A' para saber cuántas monedas de oro tengo"}
 	NUM_2.onPressCharacterSay{"Presiona la tecla 'C' para cosechar y vender todas las plantaciones"}
 	NUM_3.onPressCharacterSay{"Presiona la tecla 'T' para plantar trigo, pero ojo sale dinero"}
+	NUM_4.onPressCharacterSay{"Presiona la tecla 'R' para regar las plantas"}
+	NUM_5.onPressCharacterSay{"Presiona la tecla 'R' para regar las plantas"}
 
 	M.onPressDo { granjero.plantaMaiz() }
 	T.onPressDo { granjero.plantaTrigo() }
 	O.onPressDo { granjero.plantaTomaco() }
 	R.onPressDo { granjero.rega() }
 	C.onPressDo { granjero.cosechaTodo() }
-	A.onPressCharacterSay { "Tengo " + granjero.oro() + " monedas de oro"}
+	A.onPressCharacterSay { "Tengo " + granjero.oro() + " monedas de oro" }
 
 //	START
 	wgame.start()

@@ -11,6 +11,12 @@ object granjero {
 
 	method plantar(cultivo) { cultivos.add(cultivo) }
 	
+	
+	method cosechaTodo() {
+		cultivos.forEach { c => c.cosechate(this) }
+		cultivos.clear()
+	}
+
 //********************************************************
 //********************************************************
 
@@ -29,7 +35,7 @@ object granjero {
 	method planta(cultivo) {
 		this.restarOro(25)
 		this.plantar(cultivo)
-		posicion.drawElement(cultivo)
+		posicion.clone().drawElement(cultivo)
 	}
 	
 	method restarOro(cantidad) {
@@ -49,11 +55,6 @@ object granjero {
 		cultivosARegar.forEach { cultivo => cultivo.crece() }
 	}
 	
-	method cosechaTodo() {
-		cultivos.forEach { c => c.cosechate(this) }
-		cultivos.clear()
-	}
-	
-
+	method getPosicion() = posicion
 	method getImagen() = "player.png"
 }
