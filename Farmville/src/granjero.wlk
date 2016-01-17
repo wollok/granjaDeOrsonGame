@@ -2,10 +2,20 @@ import cultivos.*
 
 object granjero {
 	var oro = 25
+	var elemento
 	var cultivos = []
 	var posicion = new Position(3, 3)
 	
 	method oro() = oro
+
+	method agarrar(agarrable) { 
+		elemento = agarrable
+		agarrable.setPosicion(posicion)
+	}
+
+	method usarElemento() { elemento.usar(this) }
+
+	method cosecha() { this.cultivosDebajo().forEach { c => c.cosechate(this) } }
 
 	method sumarOro(cantidad) { oro += cantidad }
 
@@ -46,13 +56,17 @@ object granjero {
 	}
 	
 	method rega() {
-		var cultivosARegar = posicion.getAllElements()
+		this.cultivosDebajo().forEach { cultivo => cultivo.crece() }
+	}
+	
+	method cultivosDebajo() {
+		var _cultivos = posicion.getAllElements()
 			.filter { obj => !(this == obj) }
 			
-		if (cultivosARegar.isEmpty())
-			throw new Exception("No hay nada que regar")
-			
-		cultivosARegar.forEach { cultivo => cultivo.crece() }
+		if (_cultivos.isEmpty())
+			throw new Exception("No hay cultivos aquí")
+		
+		return _cultivos
 	}
 	
 	method getPosicion() = posicion

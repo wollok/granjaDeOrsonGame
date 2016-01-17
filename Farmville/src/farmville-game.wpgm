@@ -1,5 +1,6 @@
 import wollok.game.*
 import arbustos.*
+import espada.*
 import granjero.*
 
 program FarmvilleGame {
@@ -14,13 +15,16 @@ program FarmvilleGame {
 	granjero.plantaTrigo()
 	granjero.rega()
 	
+	wgame.addVisual(espada)
+	wgame.whenCollideDo(espada, { g => g.agarrar(espada) })
+	
 //	ARBUSTOS
 	val ancho = wgame.getWidth() - 1
 	val largo = wgame.getHeight() - 1
 	val arbustoFactory = object {
 		method draw(arbusto, posicion) {
 			posicion.drawElement(arbusto)
-			wgame.whenCollideDo(arbusto, { granjero => arbusto.empuja(granjero) })
+			wgame.whenCollideDo(arbusto, { g => arbusto.empuja(g) })
 		}
 	}
 	
@@ -36,12 +40,14 @@ program FarmvilleGame {
 	NUM_4.onPressCharacterSay{"Presiona la tecla 'R' para regar las plantas"}
 	NUM_5.onPressCharacterSay{"Presiona la tecla 'R' para regar las plantas"}
 
+
+	A.onPressCharacterSay { "Tengo " + granjero.oro() + " monedas de oro" }
+	SPACE.onPressDo { granjero.usarElemento() }
 	M.onPressDo { granjero.plantaMaiz() }
 	T.onPressDo { granjero.plantaTrigo() }
 	O.onPressDo { granjero.plantaTomaco() }
 	R.onPressDo { granjero.rega() }
 	C.onPressDo { granjero.cosechaTodo() }
-	A.onPressCharacterSay { "Tengo " + granjero.oro() + " monedas de oro" }
 
 //	START
 	wgame.start()
