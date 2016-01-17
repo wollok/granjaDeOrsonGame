@@ -7,7 +7,7 @@ class Cultivo {
 	method crece() { etapa.crece(this) }
 	
 	method cosechate(granjero) {
-		granjero.sumaOro(etapa.oroPorCosecha(this))
+		granjero.sumarOro(etapa.oroPorCosecha(this))
 		etapa = muerto
 	}
 	

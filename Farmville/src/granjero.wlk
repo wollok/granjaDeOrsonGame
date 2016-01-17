@@ -1,10 +1,19 @@
 import cultivos.*
 
 object granjero {
-	var oro = 0
+	var oro = 25
 	var cultivos = []
-	var posicion
+	var posicion = new Position(3, 3)
 	
+	method oro() = oro
+
+	method sumarOro(cantidad) { oro += cantidad }
+
+	method plantar(cultivo) { cultivos.add(cultivo) }
+	
+//********************************************************
+//********************************************************
+
 	method plantaMaiz() {
 		this.planta(new Maiz())
 	}
@@ -18,8 +27,16 @@ object granjero {
 	}
 
 	method planta(cultivo) {
+		this.restarOro(25)
+		this.plantar(cultivo)
 		posicion.drawElement(cultivo)
-		cultivos.add(cultivo)
+	}
+	
+	method restarOro(cantidad) {
+		if (cantidad > oro)
+			throw new Exception("No tengo suficiente dinero para eso")
+			
+		this.sumarOro(-cantidad)
 	}
 	
 	method rega() {
@@ -27,7 +44,7 @@ object granjero {
 			.filter { obj => !(this == obj) }
 			
 		if (cultivosARegar.isEmpty())
-			throw new Exception("Solo las plantas se pueden regar!")
+			throw new Exception("No hay nada que regar")
 			
 		cultivosARegar.forEach { cultivo => cultivo.crece() }
 	}
@@ -37,10 +54,6 @@ object granjero {
 		cultivos.clear()
 	}
 	
-	method sumaOro(cantidad) { oro += cantidad }
 
 	method getImagen() = "player.png"
-	method getPosicion() = posicion
-	method getOro() = oro
-	method setPosicion(_posicion) { posicion = _posicion }
 }

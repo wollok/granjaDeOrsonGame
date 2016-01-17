@@ -10,7 +10,9 @@ program FarmvilleGame {
 	wgame.setGround("ground.png")
 	
 //	VISUALES
- 	new Position(3, 3).drawCharacter(granjero) 		
+ 	wgame.addVisualCharacter(granjero)
+	granjero.plantaTrigo()
+	granjero.rega()
 	
 //	ARBUSTOS
 	val ancho = wgame.getWidth() - 1
@@ -22,19 +24,16 @@ program FarmvilleGame {
 	(0 .. largo).forEach { n => new ArbustoDerecha(new Position(ancho, n)) } // bordeDer
 	
 //	TECLADO
+	NUM_1.onPressCharacterSay{"Presiona la tecla 'A' para saber cuántas monedas de oro tengo"}
+	NUM_2.onPressCharacterSay{"Presiona la tecla 'C' para cosechar y vender todas las plantaciones"}
+	NUM_3.onPressCharacterSay{"Presiona la tecla 'T' para plantar trigo, pero ojo sale dinero"}
+
 	M.onPressDo { granjero.plantaMaiz() }
 	T.onPressDo { granjero.plantaTrigo() }
 	O.onPressDo { granjero.plantaTomaco() }
 	R.onPressDo { granjero.rega() }
 	C.onPressDo { granjero.cosechaTodo() }
-	
-	A.onPressCharacterSay { "mi oro: " + granjero.getOro() }
-	P.onPressCharacterSay { "Mensaje de prueba!" }
-	
-	var nada;
-	X.onPressDo { throw new Exception() }
-	N.onPressDo { nada.boom() }
-	
+	A.onPressCharacterSay { "Tengo " + granjero.oro() + " monedas de oro"}
 
 //	START
 	wgame.start()
