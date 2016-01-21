@@ -1,8 +1,7 @@
 import wollok.game.*
 import granjero.*
 import arbustos.*
-import espada.*
-import regadera.*
+import elementos.*
 
 program FarmvilleGame {
 //	CONFIG	
@@ -10,16 +9,6 @@ program FarmvilleGame {
 	wgame.setHeight(10)
 	wgame.setWidth(10)
 	wgame.setGround("ground.png")
-	
-//	VISUALES
- 	wgame.addVisualCharacter(granjero)
-	granjero.plantaTrigo()
-	granjero.rega()
-	
-	[espada, regadera].forEach{ it => 
-		wgame.addVisual(it)
-		wgame.whenCollideDo(it, { g => g.agarrar(it) })
-	}
 	
 //	ARBUSTOS
 	val ancho = wgame.getWidth() - 1
@@ -36,12 +25,24 @@ program FarmvilleGame {
 	(0 .. largo).forEach { n => arbustoFactory.draw(new ArbustoIzquierda(), new Position(0, n)) } // bordeIzq 
 	(0 .. largo).forEach { n => arbustoFactory.draw(new ArbustoDerecha(), new Position(ancho, n)) } // bordeDer
 	
+//	VISUALES
+ 	wgame.addVisualCharacter(granjero)
+	granjero.plantaTrigo()
+	granjero.rega()
+	granjero.agarrar(espada)
+	
+	[espada, regadera].forEach { it => 
+		wgame.addVisual(it)
+		wgame.whenCollideDo(it, { _ => granjero.agarrar(it) })
+	}
+
 //	TECLADO
-	NUM_1.onPressCharacterSay{"Presiona la tecla 'A' para saber cuántas monedas de oro tengo"}
-	NUM_2.onPressCharacterSay{"Presiona la tecla 'C' para cosechar y vender todas las plantaciones"}
-	NUM_3.onPressCharacterSay{"Presiona la tecla 'T' para plantar trigo, pero ojo sale dinero"}
-	NUM_4.onPressCharacterSay{"Presiona la tecla 'R' para regar las plantas"}
-	NUM_5.onPressCharacterSay{"Presiona la tecla 'R' para regar las plantas"}
+	NUM_1.onPressCharacterSay{"Presiona la tecla 'A' para saber cuántas monedas de oro tienes"}
+	NUM_2.onPressCharacterSay{"Pasa por encima de algún elemento para agarrarlo"}
+	NUM_3.onPressCharacterSay{"Presiona la tecla 'ESPACIO' para usar el elemento que agarraste."}
+	NUM_4.onPressCharacterSay{"La espada sirve para cosechar, gracias a eso obtienes más monedas de oro"}
+	NUM_5.onPressCharacterSay{"Presiona la tecla 'T' para plantar trigo, pero ojo sale dinero"}
+	NUM_6.onPressCharacterSay{"La regadera sirve para regar las plantas y obtener más dinero por cosecha"}
 
 
 	A.onPressCharacterSay { "Tengo " + granjero.oro() + " monedas de oro" }
@@ -49,8 +50,8 @@ program FarmvilleGame {
 	M.onPressDo { granjero.plantaMaiz() }
 	T.onPressDo { granjero.plantaTrigo() }
 	O.onPressDo { granjero.plantaTomaco() }
-	R.onPressDo { granjero.rega() }
-	C.onPressDo { granjero.cosechaTodo() }
+//	R.onPressDo { granjero.rega() }
+//	C.onPressDo { granjero.cosechaTodo() }
 
 //	START
 	wgame.start()

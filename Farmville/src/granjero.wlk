@@ -1,17 +1,14 @@
 import cultivos.*
+import elementos.*
 
 object granjero {
+	val imagen = "player.png"
 	var oro = 25
-	var elemento
+	var elemento = espada
 	var cultivos = []
 	var posicion = new Position(3, 3)
 	
 	method oro() = oro
-
-	method agarrar(agarrable) { 
-		elemento = agarrable
-		agarrable.setPosicion(posicion)
-	}
 
 	method usarElemento() { elemento.usar(this) }
 
@@ -20,15 +17,25 @@ object granjero {
 	method sumarOro(cantidad) { oro += cantidad }
 
 	method plantar(cultivo) { cultivos.add(cultivo) }
-	
+
+	method rega() {
+		this.cultivosDebajo().forEach { cultivo => cultivo.crece() }
+	}	
 	
 	method cosechaTodo() {
 		cultivos.forEach { c => c.cosechate(this) }
 		cultivos.clear()
 	}
 
-//********************************************************
-//********************************************************
+//////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////         CÓDIGO BASE           ////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
+
+	method agarrar(agarrable) {
+		elemento.soltar() 
+		elemento = agarrable
+		agarrable.posicion(posicion)
+	}
 
 	method plantaMaiz() {
 		this.planta(new Maiz())
@@ -55,13 +62,10 @@ object granjero {
 		this.sumarOro(-cantidad)
 	}
 	
-	method rega() {
-		this.cultivosDebajo().forEach { cultivo => cultivo.crece() }
-	}
-	
 	method cultivosDebajo() {
-		var _cultivos = posicion.getAllElements()
-			.filter { obj => !(this == obj) }
+		var _cultivos = posicion.allElements()
+			.filter { obj => !(obj == this) }
+			.filter { obj => !(obj == elemento) }
 			
 		if (_cultivos.isEmpty())
 			throw new Exception("No hay cultivos aquí")
@@ -70,5 +74,4 @@ object granjero {
 	}
 	
 	method getPosicion() = posicion
-	method getImagen() = "player.png"
 }
