@@ -1,24 +1,28 @@
+import exceptions.*
+
+object gorra inherits Elemento(new Position(2, 8), "spot.png") {
+
+	method usar(granjero) { }
+}
+
 object espada inherits Elemento(new Position(1,1), "espada.gif") {
 
-	override usar(granjero) {
-		granjero.rega()
+	method usar(granjero) {
+		throw new MethodNotImplemented("usar", this)
+//		granjero.cosecha()
 	}
 }
 
-object regadera inherits Elemento(new Position(3,1), "spot.png") {
+//object regadera inherits Elemento(new Position(3,1), "spot.png") {
+//
+//	override method usar(granjero) {
+//		granjero.rega()
+//	}
+//}
 
-	override usar(granjero) {
-		granjero.rega()
-	}
-}
-
-object candado inherits Elemento(new Position(3,1), "spot.png") {
-
-	override usar(granjero) {
-		granjero.rega()
-	}
-}
-
+//////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////         CÓDIGO BASE           ////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
 
 class Elemento {
 	val imagen
@@ -29,10 +33,6 @@ class Elemento {
 		imagen = _imagen
 		_posicionInicial = posicionInicial
 		posicion = posicionInicial
-	}
-	
-	method usar(granjero) {
-		throw new Exception("Not implemented")
 	}
 	
 	method soltar() { 

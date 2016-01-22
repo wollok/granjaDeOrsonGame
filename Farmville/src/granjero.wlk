@@ -1,18 +1,30 @@
 import cultivos.*
 import elementos.*
+import exceptions.*
 
 object granjero {
 	val imagen = "player.png"
-	var oro = 25
-	var elemento = espada
+	var posicion = new Position(2, 8)
+	var oro = 0
 	var cultivos = []
-	var posicion = new Position(3, 3)
+	var elemento = gorra
 	
-	method oro() = oro
+	method oro() {
+		return throw new MethodNotImplemented("oro", this)
+//		return oro
+	}
 
-	method usarElemento() { elemento.usar(this) }
+	method usarElemento() { 
+		throw new MethodNotImplemented("usarElemento", this)
+//		elemento.usar(this)
+	}
 
-	method cosecha() { this.cultivosDebajo().forEach { c => c.cosechate(this) } }
+	method cosecha() { 
+		this.cultivosDebajo().forEach { c => 
+			c.cosechate(this)
+			cultivos.remove(c)
+		}
+	}
 
 	method sumarOro(cantidad) { oro += cantidad }
 

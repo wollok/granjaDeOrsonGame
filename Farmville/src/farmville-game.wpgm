@@ -2,56 +2,53 @@ import wollok.game.*
 import granjero.*
 import arbustos.*
 import elementos.*
+import nivel.*
+import factories.*
 
 program FarmvilleGame {
 //	CONFIG	
 	wgame.setTitle("FarmVille")
-	wgame.setHeight(10)
-	wgame.setWidth(10)
+	wgame.setHeight(12)
+	wgame.setWidth(12)
 	wgame.setGround("ground.png")
 	
 //	ARBUSTOS
 	val ancho = wgame.getWidth() - 1
 	val largo = wgame.getHeight() - 1
-	val arbustoFactory = object {
-		method draw(arbusto, posicion) {
-			posicion.drawElement(arbusto)
-			wgame.whenCollideDo(arbusto, { g => arbusto.empuja(g) })
-		}
-	}
 	
 	(1 .. ancho-1).forEach { n => arbustoFactory.draw(new ArbustoAbajo(),new Position(n, 0)) } // bordeAbajo
 	(1 .. ancho-1).forEach { n => arbustoFactory.draw(new ArbustoArriba(), new Position(n, largo)) } // bordeArriba 
 	(0 .. largo).forEach { n => arbustoFactory.draw(new ArbustoIzquierda(), new Position(0, n)) } // bordeIzq 
 	(0 .. largo).forEach { n => arbustoFactory.draw(new ArbustoDerecha(), new Position(ancho, n)) } // bordeDer
+
+	arbustoFactory.drawVerticalBlock(5, 5)
+	[1, 9].forEach{ n => 
+		arbustoFactory.drawVerticalBlock(5, n)
+		arbustoFactory.drawHorizontalBlock(n, 5)
+	}
 	
 //	VISUALES
  	wgame.addVisualCharacter(granjero)
-	granjero.plantaTrigo()
-	granjero.rega()
-	granjero.agarrar(espada)
 	
-	[espada, regadera].forEach { it => 
+	[gorra, espada].forEach { it => 
 		wgame.addVisual(it)
 		wgame.whenCollideDo(it, { _ => granjero.agarrar(it) })
 	}
 
 //	TECLADO
-	NUM_1.onPressCharacterSay{"Presiona la tecla 'A' para saber cuántas monedas de oro tienes"}
-	NUM_2.onPressCharacterSay{"Pasa por encima de algún elemento para agarrarlo"}
-	NUM_3.onPressCharacterSay{"Presiona la tecla 'ESPACIO' para usar el elemento que agarraste."}
-	NUM_4.onPressCharacterSay{"La espada sirve para cosechar, gracias a eso obtienes más monedas de oro"}
-	NUM_5.onPressCharacterSay{"Presiona la tecla 'T' para plantar trigo, pero ojo sale dinero"}
-	NUM_6.onPressCharacterSay{"La regadera sirve para regar las plantas y obtener más dinero por cosecha"}
-
+//	NUM_1.onPressCharacterSay{"Presiona la tecla 'A' para saber cuántas monedas de oro tienes"}
+//	NUM_2.onPressCharacterSay{"Pasa por encima de algún elemento para agarrarlo"}
+//	NUM_3.onPressCharacterSay{"Presiona la tecla 'ESPACIO' para usar el elemento que agarraste."}
+//	NUM_4.onPressCharacterSay{"La espada sirve para cosechar, gracias a eso obtienes más monedas de oro"}
+//	NUM_5.onPressCharacterSay{"Presiona la tecla 'T' para plantar trigo, pero ojo sale dinero"}
+//	NUM_6.onPressCharacterSay{"La regadera sirve para regar las plantas y obtener más dinero por cosecha"}
+	nivel.configTeclado()
 
 	A.onPressCharacterSay { "Tengo " + granjero.oro() + " monedas de oro" }
 	SPACE.onPressDo { granjero.usarElemento() }
 	M.onPressDo { granjero.plantaMaiz() }
 	T.onPressDo { granjero.plantaTrigo() }
 	O.onPressDo { granjero.plantaTomaco() }
-//	R.onPressDo { granjero.rega() }
-//	C.onPressDo { granjero.cosechaTodo() }
 
 //	START
 	wgame.start()
