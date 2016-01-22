@@ -1,4 +1,4 @@
-import etapas.*
+import granjero.*
 
 class Cultivo {
 	var precio
@@ -16,8 +16,9 @@ class Cultivo {
 	
 	method crece() { etapa.crece(this) }
 	
-	method cosechate(granjero) {
+	method cosechate() {
 		granjero.sumarOro(etapa.oroPorCosecha(this))
+		
 		etapa = muerto
 	}
 	
@@ -39,4 +40,34 @@ class Trigo inherits Cultivo {
 
 class Tomaco inherits Cultivo {
 	constructor() = super("tomaco", 50)
+}
+
+
+// ETAPAS
+
+object ninio {
+
+	method crece(cultivo) { cultivo.setEtapa(adulto) } 
+
+	method oroPorCosecha(_) = 0
+	
+	method getImagen(cultivo) = cultivo.imagenCultivoNinio()
+}
+
+object adulto {
+	
+	method crece(cultivo) { cultivo.setEtapa(muerto) } 
+	
+	method oroPorCosecha(cultivo) = cultivo.oroBase()
+	
+	method getImagen(cultivo) = cultivo.imagenCultivoAdulto()
+}
+
+object muerto {
+	
+	method crece(_) { "No hace nada" } 
+	
+	method oroPorCosecha(_) = 0
+	
+	method getImagen(_) = "dead_plant.png"
 }

@@ -1,6 +1,7 @@
 import wollok.game.*
 import granjero.*
 import arbustos.*
+import cultivos.*
 import elementos.*
 import nivel.*
 import factories.*
@@ -27,28 +28,34 @@ program FarmvilleGame {
 		arbustoFactory.drawHorizontalBlock(n, 5)
 	}
 	
+	nivel.configure()
+	
 //	VISUALES
+	new Position(9,9).drawElement(object { val imagen = "caja.png" })
+
  	wgame.addVisualCharacter(granjero)
 	
 	[gorra, espada].forEach { it => 
 		wgame.addVisual(it)
-		wgame.whenCollideDo(it, { _ => granjero.agarrar(it) })
+		wgame.whenCollideDo(it, { g =>
+			if (granjero == g)
+				if (!(granjero.posicion() === it.posicion()))
+					granjero.agarrar(it)
+		})
 	}
+	
+	var maiz = new Maiz()
+	maiz.crece()
+	granjero.agregarCultivo(maiz)
+	new Position(9,2).drawElement(maiz)
 
 //	TECLADO
-//	NUM_1.onPressCharacterSay{"Presiona la tecla 'A' para saber cuántas monedas de oro tienes"}
-//	NUM_2.onPressCharacterSay{"Pasa por encima de algún elemento para agarrarlo"}
-//	NUM_3.onPressCharacterSay{"Presiona la tecla 'ESPACIO' para usar el elemento que agarraste."}
-//	NUM_4.onPressCharacterSay{"La espada sirve para cosechar, gracias a eso obtienes más monedas de oro"}
-//	NUM_5.onPressCharacterSay{"Presiona la tecla 'T' para plantar trigo, pero ojo sale dinero"}
-//	NUM_6.onPressCharacterSay{"La regadera sirve para regar las plantas y obtener más dinero por cosecha"}
-	nivel.configTeclado()
-
 	A.onPressCharacterSay { "Tengo " + granjero.oro() + " monedas de oro" }
 	SPACE.onPressDo { granjero.usarElemento() }
-	M.onPressDo { granjero.plantaMaiz() }
-	T.onPressDo { granjero.plantaTrigo() }
-	O.onPressDo { granjero.plantaTomaco() }
+	M.onPressDo { cultivoFactory.cultiva(new Maiz()) }
+	T.onPressDo { cultivoFactory.cultiva(new Trigo()) }
+	O.onPressDo { cultivoFactory.cultiva(new Tomaco()) }
+
 
 //	START
 	wgame.start()

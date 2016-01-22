@@ -4,7 +4,7 @@ import exceptions.*
 
 object granjero {
 	val imagen = "player.png"
-	var posicion = new Position(2, 8)
+	var posicion = new Position(2,9)
 	var oro = 0
 	var cultivos = []
 	var elemento = gorra
@@ -21,23 +21,28 @@ object granjero {
 
 	method cosecha() { 
 		this.cultivosDebajo().forEach { c => 
-			c.cosechate(this)
+			c.cosechate()
 			cultivos.remove(c)
 		}
 	}
+	
+	method cosechaTodo() {
+		cultivos.forEach { c => c.cosechate() }
+		cultivos.clear()
+	}
 
-	method sumarOro(cantidad) { oro += cantidad }
+	method planta(cultivo) {
+		this.restarOro(25)
+		this.agregarCultivo(cultivo)
+	}
 
-	method plantar(cultivo) { cultivos.add(cultivo) }
+	method agregarCultivo(cultivo) { cultivos.add(cultivo) }
 
 	method rega() {
 		this.cultivosDebajo().forEach { cultivo => cultivo.crece() }
 	}	
-	
-	method cosechaTodo() {
-		cultivos.forEach { c => c.cosechate(this) }
-		cultivos.clear()
-	}
+
+	method sumarOro(cantidad) { oro += cantidad }
 
 //////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////         CÓDIGO BASE           ////////////////////////////
@@ -47,24 +52,6 @@ object granjero {
 		elemento.soltar() 
 		elemento = agarrable
 		agarrable.posicion(posicion)
-	}
-
-	method plantaMaiz() {
-		this.planta(new Maiz())
-	}
-
-	method plantaTrigo() {
-		this.planta(new Trigo())
-	
-	}
-	method plantaTomaco() {
-		this.planta(new Tomaco())
-	}
-
-	method planta(cultivo) {
-		this.restarOro(25)
-		this.plantar(cultivo)
-		posicion.clone().drawElement(cultivo)
 	}
 	
 	method restarOro(cantidad) {
@@ -85,5 +72,5 @@ object granjero {
 		return _cultivos
 	}
 	
-	method getPosicion() = posicion
+	method posicion() = posicion
 }

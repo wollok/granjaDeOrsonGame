@@ -1,3 +1,4 @@
+import granjero.*
 import arbustos.*
 
 object arbustoFactory {
@@ -18,5 +19,12 @@ object arbustoFactory {
 		this.draw(new ArbustoArriba(), new Position(x+1, y))
 		this.draw(new ArbustoAbajo(), new Position(x, y+1))
 		this.draw(new ArbustoAbajo(), new Position(x+1, y+1))
+	}
+}
+
+object cultivoFactory {
+	method cultiva(cultivo) {
+		granjero.planta(cultivo)
+		granjero.posicion().clone().drawElement(cultivo)
 	}
 }

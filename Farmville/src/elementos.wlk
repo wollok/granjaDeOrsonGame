@@ -1,24 +1,17 @@
 import exceptions.*
 
-object gorra inherits Elemento(new Position(2, 8), "spot.png") {
+object gorra inherits Elemento(new Position(2,9), "spot.png") {
 
-	method usar(granjero) { }
+	method usar(granjero) { /* No hace nada */ }
 }
 
-object espada inherits Elemento(new Position(1,1), "espada.gif") {
+object espada inherits Elemento(new Position(2,2), "espada.gif") {
 
-	method usar(granjero) {
-		throw new MethodNotImplemented("usar", this)
-//		granjero.cosecha()
-	}
-}
-
-//object regadera inherits Elemento(new Position(3,1), "spot.png") {
-//
-//	override method usar(granjero) {
-//		granjero.rega()
+//	method usar(granjero) {
+//		granjero.cosechaTodo()
 //	}
-//}
+}
+
 
 //////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////         CÓDIGO BASE           ////////////////////////////
