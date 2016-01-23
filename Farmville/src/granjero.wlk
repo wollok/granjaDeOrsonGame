@@ -10,13 +10,13 @@ object granjero {
 	var elemento = gorra
 	
 	method oro() {
-		return throw new MethodNotImplemented("oro", this)
-//		return oro
+//		return throw new MethodNotImplemented("oro", this)
+		return oro
 	}
 
 	method usarElemento() { 
-		throw new MethodNotImplemented("usarElemento", this)
-//		elemento.usar(this)
+//		throw new MethodNotImplemented("usarElemento", this)
+		elemento.usar(this)
 	}
 
 	method cosecha() { 
@@ -31,16 +31,14 @@ object granjero {
 		cultivos.clear()
 	}
 
-	method planta(cultivo) {
-		this.restarOro(25)
-		this.agregarCultivo(cultivo)
+	method rega() {
+//		throw new MethodNotImplemented("rega", this)
+		this.cultivosDebajo().forEach { cultivo => cultivo.crece() }
 	}
 
-	method agregarCultivo(cultivo) { cultivos.add(cultivo) }
 
-	method rega() {
-		this.cultivosDebajo().forEach { cultivo => cultivo.crece() }
-	}	
+
+	method agregarCultivo(cultivo) { cultivos.add(cultivo) }
 
 	method sumarOro(cantidad) { oro += cantidad }
 
@@ -54,6 +52,11 @@ object granjero {
 		agarrable.posicion(posicion)
 	}
 	
+	method planta(cultivo) {
+		this.restarOro(25)
+		this.agregarCultivo(cultivo)
+	}
+
 	method restarOro(cantidad) {
 		if (cantidad > oro)
 			throw new Exception("No tengo suficiente dinero para eso")
@@ -66,8 +69,8 @@ object granjero {
 			.filter { obj => !(obj == this) }
 			.filter { obj => !(obj == elemento) }
 			
-		if (_cultivos.isEmpty())
-			throw new Exception("No hay cultivos aquí")
+//		if (_cultivos.isEmpty())
+//			throw new Exception("No hay cultivos aquí")
 		
 		return _cultivos
 	}

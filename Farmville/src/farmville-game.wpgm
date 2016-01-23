@@ -55,8 +55,8 @@ program FarmvilleGame {
 	M.onPressDo { cultivoFactory.cultiva(new Maiz()) }
 	T.onPressDo { cultivoFactory.cultiva(new Trigo()) }
 	O.onPressDo { cultivoFactory.cultiva(new Tomaco()) }
-
-
+	R.onPressDo { granjero.rega() }
+	
 //	START
 	wgame.start()
 }

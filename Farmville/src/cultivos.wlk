@@ -18,8 +18,7 @@ class Cultivo {
 	
 	method cosechate() {
 		granjero.sumarOro(etapa.oroPorCosecha(this))
-		
-		etapa = muerto
+		wgame.removeVisual(this)
 	}
 	
 	method oroBase() = precio

@@ -7,11 +7,10 @@ object gorra inherits Elemento(new Position(2,9), "spot.png") {
 
 object espada inherits Elemento(new Position(2,2), "espada.gif") {
 
-//	method usar(granjero) {
-//		granjero.cosechaTodo()
-//	}
+	method usar(granjero) {
+		granjero.cosechaTodo()
+	}
 }
-
 
 //////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////         CÓDIGO BASE           ////////////////////////////
