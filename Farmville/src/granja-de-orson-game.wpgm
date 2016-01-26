@@ -8,7 +8,7 @@ import nivel.*
 import factories.*
 import visuales.*
 
-program FarmvilleGame {
+program GranjaDeOrsonGame {
 
 //	CONFIGURACIÓN DEL JUEGO
 	wgame.setTitle("La granja de Orson")
