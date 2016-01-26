@@ -1,15 +1,22 @@
 import exceptions.*
 
-object gorra inherits Elemento(new Position(2,9), "spot.png") {
+object bolsa inherits Elemento(new Position(2,9), "bolsa.png") {
 
 	method usar(granjero) { /* No hace nada */ }
 }
 
-object espada inherits Elemento(new Position(2,2), "espada.gif") {
+object espada inherits Elemento(new Position(2,2), "espada.png") {
 
 	method usar(granjero) {
 		granjero.cosechaTodo()
 	}
+}
+
+object regadera inherits Elemento(new Position(9,2), "regadera.png") {
+
+//	method usar(granjero) {
+//		granjero.cosechaTodo()
+//	}
 }
 
 //////////////////////////////////////////////////////////////////////////////////////

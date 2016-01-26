@@ -3,11 +3,11 @@ import elementos.*
 import exceptions.*
 
 object granjero {
-	val imagen = "player.png"
+	val imagen = "granjero.png"
 	var posicion = new Position(2,9)
 	var oro = 0
 	var cultivos = []
-	var elemento = gorra
+	var elemento = bolsa
 	
 	method oro() {
 //		return throw new MethodNotImplemented("oro", this)

@@ -1,15 +1,15 @@
 import granjero.*
 
 class Maiz inherits Cultivo { 
-	constructor() = super("corn", 150)
+	constructor() = super("maiz", 150)
 }
 
 class Trigo inherits Cultivo {
-	constructor() = super("wheat", 100)
+	constructor() = super("trigo", 100)
 }
 
 class Tomaco inherits Cultivo {
-	constructor() = super("tomaco", 50)
+	constructor() = super("tomate", 50)
 }
 
 
@@ -35,8 +35,7 @@ class Cultivo {
 	}
 	
 	method oroBase() = precio
-	method imagenCultivoAdulto() = nombre + "_adult.png"
-	method imagenCultivoNinio() = nombre + "_baby.png"
+	method getNombre() = nombre
 	method setEtapa(_edad) { etapa = _edad }
 	method getImagen() = etapa.getImagen(this)
 }
@@ -51,7 +50,7 @@ object semilla {
 
 	method oroPorCosecha(_) = 0
 	
-	method getImagen(_) = "dead_plant.png"
+	method getImagen(_) = "semilla.png"
 }
 
 object bebe {
@@ -60,14 +59,14 @@ object bebe {
 	
 	method oroPorCosecha(cultivo) = cultivo.oroBase() / 2
 	
-	method getImagen(cultivo) = cultivo.imagenCultivoNinio()
+	method getImagen(cultivo) = cultivo.getNombre() + "_bebe.png"
 }
 
 object adulto {
 	
-	method crece(_) { "No hace nada" } 
+	method crece(_) { /* No hace nada */ } 
 	
 	method oroPorCosecha(cultivo) = cultivo.oroBase()
 	
-	method getImagen(cultivo) = cultivo.imagenCultivoAdulto()
+	method getImagen(cultivo) = cultivo.getNombre() + "_adulto.png"
 }

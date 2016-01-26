@@ -8,13 +8,45 @@ import nivel.*
 import factories.*
 
 program FarmvilleGame {
-//	CONFIG	
-	wgame.setTitle("FarmVille")
+
+//	CONFIGURACIÓN DEL JUEGO
+	wgame.setTitle("La granja de Orson")
 	wgame.setHeight(12)
 	wgame.setWidth(12)
-	wgame.setGround("ground.png")
-	
-//	ARBUSTOS
+	wgame.setGround("piso.png")
+		
+	nivel.configure()
+
+//	VISUALES
+/*  
+ * Se le dice 'visual object' a todos los objetos que queremos mostrar en pantalla.
+ * Todo objeto visual deberá tener un atributo (o método getter) 'imagen' con el nombre del archivo de la imagen.
+ * Para dibujar el objeto en pantalla se puede agregar al tablero por medio del método 'drawElement(visual)' 
+ * 	que entienden las posiciones. Por ej:
+ * 		var visual = object { 
+ * 			val imagen = "personaje.png" 
+ * 		}
+ * 		new Position(0,0).drawElement(visual)
+ *  
+ * Si queremos que nuestro objeto visual conozca en qué posición está del tablero, puede tener como atributo
+ * 	(o método getter) 'posicion' al objeto posición. En dicho caso, se puede agregar al tablero a través del
+ * 	método 'addVisual(visual)' que entiende wgame. Por ej:
+ * 		var visual = object { 
+ * 			val imagen = "personaje.png" 
+ * 			var posicion = new Position(0,0)
+ * 		}
+ * 		wgame.addVisual(visual)
+ * 
+ * También se da la opción de agregar un 'personaje' al juego. Automáticamente el objeto podrá ser controlado
+ * 	con las flechas y avisará cuando ocurra algún error. Para ello se puede hablar con las posiciones o wgame
+ * 	a través de los mensajes 'drawCharacter(personaje)' y 'addVisualCharacter(personaje)' respectivamente.
+ * 
+ * Tener en cuenta que los visuales se van a imprimir por pantalla según el orden en el que son agregados, 
+ * 	de modo que el primer objeto va a quedar en la capa más inferior (puede ser tapado por todo el resto) y el 
+ * 	último en la capa más superior (siempre se va a mostrar).
+ */ 
+
+	//	--------------ARBUSTOS--------------
 	val ancho = wgame.getWidth() - 1
 	val largo = wgame.getHeight() - 1
 	
@@ -28,18 +60,15 @@ program FarmvilleGame {
 		arbustoFactory.drawVerticalBlock(5, n)
 		arbustoFactory.drawHorizontalBlock(n, 5)
 	}
+	//	--------------ARBUSTOS--------------
+
+	var elementos = [bolsa, espada, regadera]
 	
-	nivel.configure()
-	
-//	VISUALES
  	wgame.addVisualCharacter(granjero)
-
-	new Position(9,9).drawElement(granero)
-	wgame.whenCollideDo(granero, { g =>  if (granjero == g) granero.hazLoTuyo() })
-
 	
-	[gorra, espada].forEach { it => 
-		wgame.addVisual(it)
+	elementos.forEach { it => wgame.addVisual(it) }
+	
+	elementos.forEach { it =>
 		wgame.whenCollideDo(it, { g =>
 			if (granjero == g)
 				if (!(granjero.posicion() === it.posicion()))
@@ -47,10 +76,13 @@ program FarmvilleGame {
 		})
 	}
 	
+	new Position(9,9).drawElement(granero)
+	wgame.whenCollideDo(granero, { g =>  if (granjero == g) granero.hazLoTuyo() })
+	
 	var maiz = new Maiz()
 	maiz.crece()
 	granjero.agregarCultivo(maiz)
-	new Position(9,2).drawElement(maiz)
+	new Position(3,2).drawElement(maiz)
 
 //	TECLADO
 	A.onPressCharacterSay { "Tengo " + granjero.oro() + " monedas de oro" }
