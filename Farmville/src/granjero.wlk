@@ -11,23 +11,27 @@ object granjero {
 	}
 	
 	method cosecha(cultivo) {
-//		this.cosecha(cultivos)
+//		throw new MethodNotImplemented("cosecha", this)
 		cultivo.cosechate()
-//		this.cosecha(this.cultivosDebajo())
 	}
 
 	method rega(cultivo) {
 //		throw new MethodNotImplemented("rega", this)
 		cultivo.crece()
-//		this.cultivosDebajo().forEach { cultivo => cultivo.crece() }
 	}
 	
-	method sumarOro(cantidad) { oro += cantidad }
+	
+//////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////         CÓDIGO BASE           ////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	method sumaOro(cantidad) { oro += cantidad }
 
-	method restarOro(cantidad) {
+	method restaOro(cantidad) {
 		if (cantidad > oro)
-			throw new Exception("No tengo suficiente dinero para eso")
+			throw new Exception("No tengo suficiente oro para eso")
 			
-		this.sumarOro(-cantidad)
+		oro -= cantidad
 	}
 }

@@ -8,7 +8,7 @@ class Trigo inherits Cultivo {
 	constructor() = super("trigo", 100)
 }
 
-class Tomaco inherits Cultivo {
+class Tomate inherits Cultivo {
 	constructor() = super("tomate", 50)
 }
 
@@ -30,7 +30,7 @@ class Cultivo {
 	method crece() { etapa.crece(this) }
 	
 	method cosechate() {
-		granjero.sumarOro(etapa.oroPorCosecha(this))
+		granjero.sumaOro(etapa.oroPorCosecha(this))
 		wgame.removeVisual(this)
 	}
 	

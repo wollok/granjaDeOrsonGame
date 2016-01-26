@@ -70,7 +70,7 @@ program FarmvilleGame {
 	
 	elementos.forEach { it => wgame.addVisual(it) }
 	
-	new Position(9,9).drawElement(granero)
+	wgame.addVisual(granero)
 	
 	var maiz = new Maiz()
 	maiz.crece()
@@ -95,7 +95,7 @@ program FarmvilleGame {
 	SPACE.onPressDo { granjeroVisual.usarElemento() }
 	M.onPressDo { granjeroVisual.planta(new Maiz()) }
 	T.onPressDo { granjeroVisual.planta(new Trigo()) }
-	O.onPressDo { granjeroVisual.planta(new Tomaco()) }
+	O.onPressDo { granjeroVisual.planta(new Tomate()) }
 	A.onPressCharacterSay { "Tengo " + granjero.oro() + " monedas de oro" }
 
 //	COLISIONES 	

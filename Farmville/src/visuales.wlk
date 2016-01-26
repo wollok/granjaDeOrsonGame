@@ -9,7 +9,7 @@ object granjeroVisual {
 	method usarElemento() { elemento.usate(this) }
 	
 	method planta(cultivo) {
-		this.restarOro(25)
+		this.restaOro(25)
 		posicion.clone().drawElement(cultivo)
 	}
 	
@@ -17,10 +17,7 @@ object granjeroVisual {
 
 	method cosecha() { granjero.cosecha(this.cultivosDebajo().head()) }
 
-	
-	method sumarOro(cantidad) { granjero.sumarOro(cantidad) }
-
-	method restarOro(cantidad) { granjero.restarOro(cantidad) }
+	method restaOro(cantidad) { granjero.restaOro(cantidad) }
 	
 	method agarrar(agarrable) {
 		if (elemento != null)
@@ -34,8 +31,8 @@ object granjeroVisual {
 			.filter { obj => !(obj == this) }
 			.filter { obj => !(obj == elemento) }
 			
-//		if (cultivos.isEmpty())
-//			throw new Exception("No hay cultivos aquí")
+		if (cultivos.isEmpty())
+			throw new Exception("No hay cultivos aquí")
 		
 		return cultivos
 	}
