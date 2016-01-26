@@ -1,6 +1,7 @@
 import wollok.game.*
 import granjero.*
 import arbustos.*
+import granero.*
 import cultivos.*
 import elementos.*
 import nivel.*
@@ -31,9 +32,11 @@ program FarmvilleGame {
 	nivel.configure()
 	
 //	VISUALES
-	new Position(9,9).drawElement(object { val imagen = "caja.png" })
-
  	wgame.addVisualCharacter(granjero)
+
+	new Position(9,9).drawElement(granero)
+	wgame.whenCollideDo(granero, { g =>  if (granjero == g) granero.hazLoTuyo() })
+
 	
 	[gorra, espada].forEach { it => 
 		wgame.addVisual(it)

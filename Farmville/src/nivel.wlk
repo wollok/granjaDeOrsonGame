@@ -1,5 +1,6 @@
 import wollok.game.*
 import granjero.*
+import granero.*
 import elementos.*
 import exceptions.*
 import factories.*
@@ -9,8 +10,13 @@ object nivel {
 	method configure() {
 		var mensaje = "¡Al fin, granero querido!"
 		
-		arbustoFactory.drawVerticalBlock(5, 7)
-
+		try 
+			granero.hazLoTuyo()
+		catch e : MethodNotImplemented {
+			arbustoFactory.drawVerticalBlock(5, 7)
+			mensaje = this.nivel4()
+		}
+		
 		try 
 			granjero.rega()
 		catch e : MethodNotImplemented {
@@ -41,4 +47,5 @@ object nivel {
 
 	method nivel3() = "Presiona la tecla 'R' para regar los cultivos"
 
+	method nivel4() = "Entra al granero para BLABLALABAL"
 }

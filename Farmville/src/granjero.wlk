@@ -19,16 +19,16 @@ object granjero {
 		elemento.usar(this)
 	}
 
-	method cosecha() { 
-		this.cultivosDebajo().forEach { c => 
+	method cosecha(_cultivos) { 
+		_cultivos.forEach { c => 
 			c.cosechate()
-			cultivos.remove(c)
+			_cultivos.remove(c)
 		}
 	}
 	
 	method cosechaTodo() {
-		cultivos.forEach { c => c.cosechate() }
-		cultivos.clear()
+		this.cosecha(cultivos)
+//		this.cosecha(this.cultivosDebajo())
 	}
 
 	method rega() {
