@@ -11,28 +11,32 @@ object nivel {
 		var mensaje = "¡Al fin, granero querido!"
 		
 		try 
-			granero.hazLoTuyo()
+			null
+//			granero.hazLoTuyo()
 		catch e : MethodNotImplemented {
 			arbustoFactory.drawVerticalBlock(5, 7)
 			mensaje = this.nivel4()
 		}
 		
 		try 
-			granjero.rega()
+			null
+//			granjero.rega()
 		catch e : MethodNotImplemented {
 			arbustoFactory.drawHorizontalBlock(7, 5)
 			mensaje = this.nivel3()
 		}
 		
 		try 
-			granjero.usarElemento()
+			null
+//			granjero.usarElemento()
 		catch e : MethodNotImplemented {
 			arbustoFactory.drawVerticalBlock(5, 3)
 			mensaje = this.nivel2()
 		}
 		
 		try 
-			granjero.oro()
+			null
+//			granjero.oro()
 		catch e : MethodNotImplemented {
 			arbustoFactory.drawHorizontalBlock(3, 5)
 			mensaje = this.nivel1()
