@@ -7,7 +7,7 @@ import cultivos.*
 
 object nivel {
 
-	method configure() {
+	method configura() {
 		var mensaje = "¡Al fin, granero querido!"
 		var cultivos = [new Maiz(), new Trigo(), new Tomate()]
 			
@@ -15,7 +15,7 @@ object nivel {
 			granero.rega()
 			granero.cosecha()
 			granero.planta(new Maiz())
-			granjero.restaOro(granjero.oro())
+//			granjero.restaOro(granjero.oro())
 		}
 		catch e : MethodNotImplemented {
 			arbustoFactory.drawVerticalBlock(5, 7)
@@ -28,7 +28,7 @@ object nivel {
 				it.crece()
 				it.cosechate()
 			}
-			granjero.restaOro(granjero.oro())
+//			granjero.restaOro(granjero.oro())
 		}
 		catch e : MethodNotImplemented {
 			arbustoFactory.drawHorizontalBlock(7, 5)

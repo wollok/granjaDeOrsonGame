@@ -4,6 +4,7 @@ import arbustos.*
 import granero.*
 import cultivos.*
 import elementos.*
+import tractor.*
 import nivel.*
 import factories.*
 import visuales.*
@@ -16,7 +17,7 @@ program GranjaDeOrsonGame {
 	wgame.setWidth(12)
 	wgame.setGround("piso.png")
 		
-	nivel.configure()
+	nivel.configura()
 
 //	VISUALES
 /*  
@@ -75,7 +76,10 @@ program GranjaDeOrsonGame {
 	var maiz = new Maiz()
 	maiz.crece()
 	new Position(3,2).drawElement(maiz)
-
+	
+	tractor.init(new Position(11,1))
+	wgame.addVisual(tractor)
+		
 //	TECLADO
 /*
  * Como la mayoría de los juegos requiere del teclado para jugar, el lenguaje ofrece cada tecla modelada como un objeto. 
@@ -99,6 +103,7 @@ program GranjaDeOrsonGame {
 	A.onPressCharacterSay { "Tengo " + granjero.oro() + " monedas de oro" }
 
 //	COLISIONES 	
+	wgame.whenCollideDo(tractor, { g =>  if (granjeroVisual == g) tractor.comprate(granjeroVisual) })
 	wgame.whenCollideDo(granero, { g =>  if (granjeroVisual == g) granjeroVisual.elemento().usate(granero) })
 	
 	elementos.forEach { it =>

@@ -3,7 +3,7 @@ import elementos.*
 import exceptions.*
 
 object granjero {
-	var oro = 0
+	var oro = 1000
 	
 	method oro() {
 //		return throw new MethodNotImplemented("oro", this)
