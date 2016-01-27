@@ -1,4 +1,36 @@
 import granjero.*
+import exceptions.*
+
+class Cultivo {
+	var precio
+	var nombre
+	
+	constructor(_nombre, _precio) {
+		nombre = _nombre
+		precio = _precio
+	}
+
+	method crece() { throw new MethodNotImplemented("crece", this) }
+	
+	method oroGanado() { return throw new MethodNotImplemented("oroGanado", this) }
+	
+	method getImagen() { return throw new MethodNotImplemented("getImagen", this) }
+
+
+//////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////         CÓDIGO BASE           ////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	method cosechate() {
+		granjero.sumaOro(this.oroGanado())
+		wgame.removeVisual(this)
+	}
+	
+	method precio() = precio
+	method nombre() = nombre
+}
+
 
 class Maiz inherits Cultivo { 
 	constructor() = super("maiz", 150)
@@ -12,61 +44,10 @@ class Tomate inherits Cultivo {
 	constructor() = super("tomate", 50)
 }
 
-
-class Cultivo {
-	var precio
-	var nombre
-	var etapa = semilla
+object maizEjemplo {
+	method crece() { /* No hace nada */ }
 	
-	constructor(_nombre, _precio) {
-		nombre = _nombre
-		precio = _precio
-	}
-
-//////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////         CÓDIGO BASE           ////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////
+	method oroGanado() = 150
 	
-	method crece() { etapa.crece(this) }
-	
-	method cosechate() {
-		granjero.sumaOro(etapa.oroPorCosecha(this))
-		wgame.removeVisual(this)
-	}
-	
-	method oroBase() = precio
-	method getNombre() = nombre
-	method setEtapa(_edad) { etapa = _edad }
-	method getImagen() = etapa.getImagen(this)
-}
-
-
-
-// ETAPAS
-
-object semilla {
-
-	method crece(cultivo) { cultivo.setEtapa(bebe) } 
-
-	method oroPorCosecha(_) = 0
-	
-	method getImagen(_) = "semilla.png"
-}
-
-object bebe {
-	
-	method crece(cultivo) { cultivo.setEtapa(adulto) } 
-	
-	method oroPorCosecha(cultivo) = cultivo.oroBase() / 2
-	
-	method getImagen(cultivo) = cultivo.getNombre() + "_bebe.png"
-}
-
-object adulto {
-	
-	method crece(_) { /* No hace nada */ } 
-	
-	method oroPorCosecha(cultivo) = cultivo.oroBase()
-	
-	method getImagen(cultivo) = cultivo.getNombre() + "_adulto.png"
+	method getImagen() = "maiz_adulto.png"
 }

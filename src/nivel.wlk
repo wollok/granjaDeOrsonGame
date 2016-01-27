@@ -74,9 +74,7 @@ object nivel {
 		
 		wgame.addVisual(granero)
 		
-		var maiz = new Maiz()
-		maiz.crece()
-		new Position(3,2).drawElement(maiz)
+		new Position(3,2).drawElement(maizEjemplo)
 		
 		tractor.init(new Position(9,4))
 		wgame.addVisual(tractor)
@@ -123,7 +121,6 @@ object nivel {
 
 	method avance() {
 		var mensaje = "Ya quiero irme de esta granja."
-		var cultivos = [new Maiz(), new Trigo(), new Tomate()]
 			
 		try {
 			granero.planta(new Maiz())
@@ -138,7 +135,7 @@ object nivel {
 		catch e {}
 		
 		try {
-			cultivos.forEach{ it => it.crece() }
+			new Maiz().crece()
 		}
 		catch e : MethodNotImplemented {
 			arbustoFactory.drawHorizontalBlock(7, 5)

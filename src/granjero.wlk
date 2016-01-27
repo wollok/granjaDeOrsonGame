@@ -3,21 +3,18 @@ import elementos.*
 import exceptions.*
 
 object granjero {
-	var oro = 1000
+	var oro = 0
 	
 	method oro() {
-//		return throw new MethodNotImplemented("oro", this)
-		return oro
+		return throw new MethodNotImplemented("oro", this)
 	}
 	
 	method cosecha(cultivo) {
-//		throw new MethodNotImplemented("cosecha", this)
-		cultivo.cosechate()
+		throw new MethodNotImplemented("cosecha", this)
 	}
 
 	method rega(cultivo) {
-//		throw new MethodNotImplemented("rega", this)
-		cultivo.crece()
+		throw new MethodNotImplemented("rega", this)
 	}
 	
 	
