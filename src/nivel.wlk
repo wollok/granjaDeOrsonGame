@@ -135,7 +135,7 @@ object nivel {
 		catch e {}
 		
 		try {
-			new Maiz().crece()
+			granjero.rega(new Maiz())
 		}
 		catch e : MethodNotImplemented {
 			arbustoFactory.drawHorizontalBlock(7, 5)

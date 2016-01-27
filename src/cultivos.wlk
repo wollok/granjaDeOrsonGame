@@ -10,11 +10,9 @@ class Cultivo {
 		precio = _precio
 	}
 
-	method crece() { throw new MethodNotImplemented("crece", this) }
+	method oroGanado() { return 0 }
 	
-	method oroGanado() { return throw new MethodNotImplemented("oroGanado", this) }
-	
-	method getImagen() { return throw new MethodNotImplemented("getImagen", this) }
+	method imagen() { return "semilla.png" }
 
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -44,10 +42,8 @@ class Tomate inherits Cultivo {
 	constructor() = super("tomate", 50)
 }
 
-object maizEjemplo {
-	method crece() { /* No hace nada */ }
+object maizEjemplo inherits Cultivo("maiz", 150) {
+	override method oroGanado() = 150
 	
-	method oroGanado() = 150
-	
-	method getImagen() = "maiz_adulto.png"
+	override method imagen() = "maiz_adulto.png"
 }
