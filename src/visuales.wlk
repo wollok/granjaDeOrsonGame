@@ -1,5 +1,4 @@
 import granjero.*
-import elementos.*
 
 object granjeroVisual {
 	val imagen = "granjero.png"

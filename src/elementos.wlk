@@ -3,7 +3,9 @@ import cultivos.*
 
 object bolsa inherits Elemento(new Position(2,9), "bolsa.png") {
 
-	method usate(plantador) { plantador.planta(new Trigo()) }
+	method usate(plantador) { plantador.planta(this.cultivo()) }
+	
+	method cultivo() = [new Trigo(), new Maiz(), new Tomate()].anyOne()
 }
 
 object regadera inherits Elemento(new Position(9,2), "regadera.png") {

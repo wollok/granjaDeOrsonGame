@@ -3,24 +3,24 @@ import exceptions.*
 object granero { 
 	val imagen = "granero.png"
 	val posicion = new Position(9,9)
-	var cultivos = []
+	var cultivo
 	
-	method planta(cultivo) {
+	method planta(_cultivo) {
 //		throw new MethodNotImplemented("planta", this)
 		this.borde().forEach{ pos =>
-			pos.drawElement(cultivo)
-			cultivos.add(cultivo)
+			pos.drawElement(_cultivo)
 		}
+		cultivo = _cultivo
 	}
 	
 	method rega() { 
 //		throw new MethodNotImplemented("rega", this)
-		cultivos.forEach{ it => it.crece() }
+		cultivo.crece()
 	}
 
 	method cosecha() { 
 //		throw new MethodNotImplemented("cosecha", this)
-		cultivos.forEach{ it => it.cocechate() }
+		this.borde().forEach{ _ => cultivo.cosechate() }
 	}
 	
 	method borde() {

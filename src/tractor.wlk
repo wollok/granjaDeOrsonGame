@@ -10,7 +10,8 @@ object tractor {
 	
 	method comprate(granjero) {
 		try {
-			granjero.restaOro(200)
+			if (n==0)
+				granjero.restaOro(800)
 			this.win(granjero)
 		} catch e {
 			granjero.posicion().moveRight(1)
@@ -19,10 +20,11 @@ object tractor {
 	}
 	
 	method win(granjero) {
-//		wgame.removeVisual(granjero)
 		imagen = "granjero_tractor.png"
-		[posicion, granjero.posicion()].forEach{it => it.moveLeft(1)}
-		console.println(n++)
-		if (n>10) wgame.stop()
+		posicion = granjero.posicion()
+		posicion.moveLeft(1)
+		posicion.say(granjero, "Muchas gracias por ayudarme, nos vemos!")
+		n++
+		if (n>5) wgame.stop()
 	}
 }
