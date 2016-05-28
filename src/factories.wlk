@@ -8,16 +8,16 @@ object arbustoFactory {
 	}
 	
 	method drawVerticalBlock(x, y) {
-		this.draw(new ArbustoDerecha(), new Position(x, y))
-		this.draw(new ArbustoDerecha(), new Position(x, y+1))
-		this.draw(new ArbustoIzquierda(), new Position(x+1, y))
-		this.draw(new ArbustoIzquierda(), new Position(x+1, y+1))
+		self.draw(new ArbustoDerecha(), new Position(x, y))
+		self.draw(new ArbustoDerecha(), new Position(x, y+1))
+		self.draw(new ArbustoIzquierda(), new Position(x+1, y))
+		self.draw(new ArbustoIzquierda(), new Position(x+1, y+1))
 	}
 	
 	method drawHorizontalBlock(x, y) {
-		this.draw(new ArbustoArriba(), new Position(x, y))
-		this.draw(new ArbustoArriba(), new Position(x+1, y))
-		this.draw(new ArbustoAbajo(), new Position(x, y+1))
-		this.draw(new ArbustoAbajo(), new Position(x+1, y+1))
+		self.draw(new ArbustoArriba(), new Position(x, y))
+		self.draw(new ArbustoArriba(), new Position(x+1, y))
+		self.draw(new ArbustoAbajo(), new Position(x, y+1))
+		self.draw(new ArbustoAbajo(), new Position(x+1, y+1))
 	}
 }

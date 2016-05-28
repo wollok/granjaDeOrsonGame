@@ -1,5 +1,5 @@
 class Arbusto {
-	val imagen = "arbusto.png"
+	const imagen = "arbusto.png"
 }
 
 class ArbustoArriba inherits Arbusto {

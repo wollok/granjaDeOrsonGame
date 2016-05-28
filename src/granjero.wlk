@@ -9,7 +9,7 @@ object granjero {
 	 * Este método debe retornar la cantidad de oro que posee el granjero. 
 	 */	
 	method oro() {
-		return throw new MethodNotImplemented("oro", this)
+		return throw new MethodNotImplemented("oro", self)
 	}
 	
 	
@@ -17,7 +17,7 @@ object granjero {
 	 * Para cosechar un cultivo basta con enviarle el mensaje 'cosechate()'.
 	 */	
 	method cosecha(cultivo) {
-		throw new MethodNotImplemented("cosecha", this)
+		throw new MethodNotImplemented("cosecha", self)
 	}
 
 
@@ -25,7 +25,7 @@ object granjero {
 	 * Al regar un cultivo éste crece. Mientras más crezca, más oro dará cuando se coseche.
 	 */	
 	method rega(cultivo) {
-		throw new MethodNotImplemented("rega", this)
+		throw new MethodNotImplemented("rega", self)
 	}
 	
 	

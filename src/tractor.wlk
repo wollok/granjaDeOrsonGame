@@ -12,7 +12,7 @@ object tractor {
 		try {
 			if (n==0)
 				granjero.restaOro(800)
-			this.win(granjero)
+			self.win(granjero)
 		} catch e {
 			granjero.posicion().moveRight(1)
 			throw e	

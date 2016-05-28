@@ -18,7 +18,7 @@ object nivel {
 		wgame.setWidth(12)
 		wgame.setGround("piso.png")
 			
-		this.avance()
+		self.avance()
 	
 	//	VISUALES
 	/*  
@@ -51,8 +51,8 @@ object nivel {
 	 */ 
 	
 		//	--------------ARBUSTOS--------------
-		val ancho = wgame.getWidth() - 1
-		val largo = wgame.getHeight() - 1
+		const ancho = wgame.getWidth() - 1
+		const largo = wgame.getHeight() - 1
 		
 		(1 .. ancho-1).forEach { n => arbustoFactory.draw(new ArbustoAbajo(),new Position(n, 0)) } // bordeAbajo
 		(1 .. ancho-1).forEach { n => arbustoFactory.draw(new ArbustoArriba(), new Position(n, largo)) } // bordeArriba 
@@ -130,7 +130,7 @@ object nivel {
 		}
 		catch e : MethodNotImplemented {
 			arbustoFactory.drawVerticalBlock(5, 7)
-			mensaje = this.nivel4()
+			mensaje = self.nivel4()
 		}
 		catch e {}
 		
@@ -139,7 +139,7 @@ object nivel {
 		}
 		catch e : MethodNotImplemented {
 			arbustoFactory.drawHorizontalBlock(7, 5)
-			mensaje = this.nivel3()
+			mensaje = self.nivel3()
 		}
 		catch e {}
 		
@@ -147,7 +147,7 @@ object nivel {
 			granjero.cosecha(null)
 		catch e : MethodNotImplemented {
 			arbustoFactory.drawVerticalBlock(5, 3)
-			mensaje = this.nivel2()
+			mensaje = self.nivel2()
 		}
 		catch e {}
 		
@@ -155,7 +155,7 @@ object nivel {
 			granjero.oro()
 		catch e : MethodNotImplemented {
 			arbustoFactory.drawHorizontalBlock(3, 5)
-			mensaje = this.nivel1()
+			mensaje = self.nivel1()
 		}
 		catch e {}
 		

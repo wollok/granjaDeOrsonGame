@@ -1,8 +1,8 @@
 import exceptions.*
 
 object granero { 
-	val imagen = "granero.png"
-	val posicion = new Position(9,9)
+	const imagen = "granero.png"
+	const posicion = new Position(9,9)
 	
 	/*
 	 * Cuando se le pride al granero que plante un cultivo éste lo planta a su alrededor.
@@ -11,7 +11,7 @@ object granero {
 	 * las posiciones.
 	 */
 	method planta(_cultivo) {
-		throw new MethodNotImplemented("planta", this)
+		throw new MethodNotImplemented("planta", self)
 	}
 	
 	
@@ -19,7 +19,7 @@ object granero {
 	 * Debe hacer crecer todos los cultivos que plantó el granero
 	 */
 	method rega() { 
-		throw new MethodNotImplemented("rega", this)
+		throw new MethodNotImplemented("rega", self)
 	}
 
 
@@ -27,7 +27,7 @@ object granero {
 	 * Debe cosechar todos los cultivos que plantó el granero
 	 */
 	method cosecha() { 
-		throw new MethodNotImplemented("cosecha", this)
+		throw new MethodNotImplemented("cosecha", self)
 	}
 	
 
