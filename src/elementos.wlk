@@ -3,7 +3,7 @@ import cultivos.*
 
 object bolsa inherits Elemento(new Position(2,9), "bolsa.png") {
 
-	method usate(plantador) { plantador.planta(this.cultivo()) }
+	method usate(plantador) { plantador.planta(self.cultivo()) }
 	
 	method cultivo() = [new Trigo(), new Maiz(), new Tomate()].anyOne()
 }
@@ -19,8 +19,8 @@ object espada inherits Elemento(new Position(2,2), "espada.png") {
 }
 
 class Elemento {
-	val imagen
-	val _posicionInicial
+	const imagen
+	const _posicionInicial
 	var posicion 
 	
 	constructor(posicionInicial, _imagen) {

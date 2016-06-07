@@ -1,20 +1,20 @@
 import granjero.*
 
 object granjeroVisual {
-	val imagen = "granjero.png"
+	const imagen = "granjero.png"
 	var posicion = new Position(2,9)
 	var elemento
 	
-	method usarElemento() { elemento.usate(this) }
+	method usarElemento() { elemento.usate(self) }
 	
 	method planta(cultivo) {
-		this.restaOro(25)
+		self.restaOro(25)
 		posicion.clone().drawElement(cultivo)
 	}
 	
-	method rega() { granjero.rega(this.cultivosDebajo().head()) }
+	method rega() { granjero.rega(self.cultivosDebajo().head()) }
 
-	method cosecha() { granjero.cosecha(this.cultivosDebajo().head()) }
+	method cosecha() { granjero.cosecha(self.cultivosDebajo().head()) }
 
 	method restaOro(cantidad) { granjero.restaOro(cantidad) }
 	
@@ -27,7 +27,7 @@ object granjeroVisual {
 
 	method cultivosDebajo() {
 		var cultivos = posicion.allElements()
-			.filter { obj => !(obj == this) }
+			.filter { obj => !(obj == self) }
 			.filter { obj => !(obj == elemento) }
 			
 		if (cultivos.isEmpty())
