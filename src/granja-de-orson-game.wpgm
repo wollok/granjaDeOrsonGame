@@ -8,5 +8,5 @@ import nivel.*
 
 program GranjaDeOrsonGame {
 	nivel.configurate()
-	wgame.start()
+	game.start()
 }

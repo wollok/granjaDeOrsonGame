@@ -4,7 +4,7 @@ import arbustos.*
 object arbustoFactory {
 	method draw(arbusto, posicion) {
 		posicion.drawElement(arbusto)
-		wgame.whenCollideDo(arbusto, { g => arbusto.empuja(g) })
+		game.whenCollideDo(arbusto, { g => arbusto.empuja(g) })
 	}
 	
 	method drawVerticalBlock(x, y) {

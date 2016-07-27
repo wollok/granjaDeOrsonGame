@@ -13,10 +13,10 @@ object nivel {
 
 	method configurate() {
 	//	CONFIGURACIÓN DEL JUEGO
-		wgame.setTitle("La granja de Orson")
-		wgame.setHeight(12)
-		wgame.setWidth(12)
-		wgame.setGround("piso.png")
+		game.setTitle("La granja de Orson")
+		game.setHeight(12)
+		game.setWidth(12)
+		game.setGround("piso.png")
 			
 		self.avance()
 	
@@ -33,15 +33,15 @@ object nivel {
 	 *  
 	 * Si queremos que nuestro objeto visual conozca en qué posición está del tablero, puede tener como atributo
 	 * 	(o método getter) 'posicion' al objeto posición. En dicho caso, se puede agregar al tablero a través del
-	 * 	método 'addVisual(visual)' que entiende wgame. Por ejemplo:
+	 * 	método 'addVisual(visual)' que entiende game. Por ejemplo:
 	 * 		var visual = object { 
 	 * 			val imagen = "una_imagen.png" 
 	 * 			var posicion = new Position(0,0)
 	 * 		}
-	 * 		wgame.addVisual(visual)
+	 * 		game.addVisual(visual)
 	 * 
 	 * También se da la opción de agregar un 'personaje' al juego. Automáticamente el objeto podrá ser controlado
-	 * 	con las flechas y éste hablará cuando ocurra algún error. Para ello se puede hablar con las posiciones o wgame
+	 * 	con las flechas y éste hablará cuando ocurra algún error. Para ello se puede hablar con las posiciones o game
 	 * 	a través de los mensajes 'drawCharacter(personaje)' y 'addVisualCharacter(personaje)' respectivamente. Solo
 	 * 	se puede tener un personaje por juego.
 	 * 
@@ -51,8 +51,8 @@ object nivel {
 	 */ 
 	
 		//	--------------ARBUSTOS--------------
-		const ancho = wgame.getWidth() - 1
-		const largo = wgame.getHeight() - 1
+		const ancho = game.getWidth() - 1
+		const largo = game.getHeight() - 1
 		
 		(1 .. ancho-1).forEach { n => arbustoFactory.draw(new ArbustoAbajo(),new Position(n, 0)) } // bordeAbajo
 		(1 .. ancho-1).forEach { n => arbustoFactory.draw(new ArbustoArriba(), new Position(n, largo)) } // bordeArriba 
@@ -68,16 +68,16 @@ object nivel {
 	
 		var elementos = [bolsa, espada, regadera]
 		
-	 	wgame.addVisualCharacter(granjeroVisual)
+	 	game.addVisualCharacter(granjeroVisual)
 		
-		elementos.forEach { it => wgame.addVisual(it) }
+		elementos.forEach { it => game.addVisual(it) }
 		
-		wgame.addVisual(granero)
+		game.addVisual(granero)
 		
 		new Position(3,2).drawElement(maizEjemplo)
 		
 		tractor.init(new Position(9,4))
-		wgame.addVisual(tractor)
+		game.addVisual(tractor)
 			
 	//	TECLADO
 	/*
@@ -104,11 +104,11 @@ object nivel {
 		ANY_KEY.onPressDo { usador = granjeroVisual }
 	
 	//	COLISIONES 	
-		wgame.whenCollideDo(tractor, { g =>  if (granjeroVisual == g) tractor.comprate(granjeroVisual) })
-		wgame.whenCollideDo(granero, { g =>  if (granjeroVisual == g) usador = granero })
+		game.whenCollideDo(tractor, { g =>  if (granjeroVisual == g) tractor.comprate(granjeroVisual) })
+		game.whenCollideDo(granero, { g =>  if (granjeroVisual == g) usador = granero })
 		
 		elementos.forEach { it =>
-			wgame.whenCollideDo(it, { g =>
+			game.whenCollideDo(it, { g =>
 				if (granjeroVisual == g)
 					if (!(granjeroVisual.posicion() === it.posicion()))
 						granjeroVisual.agarrar(it)

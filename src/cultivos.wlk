@@ -22,7 +22,7 @@ class Cultivo {
 	
 	method cosechate() {
 		granjero.sumaOro(self.oroGanado())
-		wgame.removeVisual(self)
+		game.removeVisual(self)
 	}
 	
 	method precio() = precio

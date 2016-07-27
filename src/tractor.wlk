@@ -25,6 +25,6 @@ object tractor {
 		posicion.moveLeft(1)
 		posicion.say(granjero, "Muchas gracias por ayudarme, nos vemos!")
 		n++
-		if (n>5) wgame.stop()
+		if (n>5) game.stop()
 	}
 }
