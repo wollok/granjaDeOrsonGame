@@ -32,10 +32,10 @@ class Elemento {
 	method soltar() { 
 		posicion = _posicionInicial
 	}
+	
+	method posicion() = posicion
 
 	method posicion(p) { 
 		posicion = p
 	}
-	
-	method posicion() = posicion
 }

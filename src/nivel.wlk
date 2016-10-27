@@ -13,10 +13,10 @@ object nivel {
 
 	method configurate() {
 	//	CONFIGURACIÓN DEL JUEGO
-		game.setTitle("La granja de Orson")
-		game.setHeight(12)
-		game.setWidth(12)
-		game.setGround("piso.png")
+		game.title("La granja de Orson")
+		game.height(12)
+		game.width(12)
+		game.ground("piso.png")
 			
 		self.avance()
 	
@@ -51,8 +51,8 @@ object nivel {
 	 */ 
 	
 		//	--------------ARBUSTOS--------------
-		const ancho = game.getWidth() - 1
-		const largo = game.getHeight() - 1
+		const ancho = game.width() - 1
+		const largo = game.height() - 1
 		
 		(1 .. ancho-1).forEach { n => arbustoFactory.draw(new ArbustoAbajo(),new Position(n, 0)) } // bordeAbajo
 		(1 .. ancho-1).forEach { n => arbustoFactory.draw(new ArbustoArriba(), new Position(n, largo)) } // bordeArriba 
@@ -98,7 +98,7 @@ object nivel {
 	
 		var usador = granjeroVisual
 		
-		A.onPressCharacterSay { "Tengo " + granjero.oro() + " monedas de oro" }
+		A.onPressDo { game.say(granjeroVisual, "Tengo " + granjero.oro() + " monedas de oro") }
 		SPACE.onPressDo { granjeroVisual.elemento().usate(usador) }
 		
 		ANY_KEY.onPressDo { usador = granjeroVisual }
@@ -114,9 +114,6 @@ object nivel {
 						granjeroVisual.agarrar(it)
 			})
 		}
-
-
-		
 	}
 
 	method avance() {
@@ -159,7 +156,7 @@ object nivel {
 		}
 		catch e {}
 		
-		H.onPressCharacterSay{mensaje}
+		H.onPressDo{game.say(granjeroVisual, mensaje)}
 	}
 	
 	method nivel1() = "Presiona la tecla 'A' para saber cuántas monedas de oro tengo."
