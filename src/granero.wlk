@@ -37,8 +37,8 @@ object granero {
 	
 	
 	method borde() {
-		var x = posicion.getX()
-		var y = posicion.getY()
+		var x = posicion.x()
+		var y = posicion.y()
 		return [
 			new Position(x-1,y-1),
 			new Position(x,y-1),
