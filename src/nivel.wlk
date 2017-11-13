@@ -104,12 +104,13 @@ object nivel {
 		ANY_KEY.onPressDo { usador = granjeroVisual }
 	
 	//	COLISIONES 	
-		game.whenCollideDo(tractor, { g =>  if (granjeroVisual == g) tractor.comprate(granjeroVisual) })
-		game.whenCollideDo(granero, { g =>  if (granjeroVisual == g) usador = granero })
+		const gv = granjeroVisual
+		game.whenCollideDo(tractor, { g =>  if (gv == g) tractor.comprate(granjeroVisual) })
+		game.whenCollideDo(granero, { g =>  if (gv == g) usador = granero })
 		
 		elementos.forEach { it =>
 			game.whenCollideDo(it, { g =>
-				if (granjeroVisual == g)
+				if (gv == g)
 					if (!(granjeroVisual.posicion() === it.posicion()))
 						granjeroVisual.agarrar(it)
 			})
