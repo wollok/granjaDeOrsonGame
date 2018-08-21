@@ -98,10 +98,10 @@ object nivel {
 	
 		var usador = granjeroVisual
 		
-		A.onPressDo { game.say(granjeroVisual, "Tengo " + granjero.oro() + " monedas de oro") }
-		SPACE.onPressDo { granjeroVisual.elemento().usate(usador) }
+		keyboard.a().onPressDo { game.say(granjeroVisual, "Tengo " + granjero.oro() + " monedas de oro") }
+		keyboard.space().onPressDo { granjeroVisual.elemento().usate(usador) }
 		
-		ANY_KEY.onPressDo { usador = granjeroVisual }
+		keyboard.any().onPressDo { usador = granjeroVisual }
 	
 	//	COLISIONES 	
 		const gv = granjeroVisual
@@ -157,7 +157,7 @@ object nivel {
 		}
 		catch e {}
 		
-		H.onPressDo{game.say(granjeroVisual, mensaje)}
+		keyboard.h().onPressDo{game.say(granjeroVisual, mensaje)}
 	}
 	
 	method nivel1() = "Presiona la tecla 'A' para saber cuántas monedas de oro tengo."
