@@ -3,7 +3,7 @@ import exceptions.*
 
 object granero { 
 	const image = "granero.png"
-	const position = new Position(9,9)
+	const position = new Position(x=9,y=9)
 	
 	/*
 	 * Cuando se le pride al granero que plante un cultivo éste lo planta a su alrededor.
@@ -41,14 +41,14 @@ object granero {
 		var x = position.x()
 		var y = position.y()
 		return [
-			new Position(x-1,y-1),
-			new Position(x,y-1),
-			new Position(x+1,y-1),
-			new Position(x+1,y),
-			new Position(x+1,y+1),
-			new Position(x,y+1),
-			new Position(x-1,y+1),
-			new Position(x-1,y)
+			new Position(x=x-1,y=y-1),
+			new Position(x=x,y=y-1),
+			new Position(x=x+1,y=y-1),
+			new Position(x=x+1,y=y),
+			new Position(x=x+1,y=y+1),
+			new Position(x=x,y=y+1),
+			new Position(x=x-1,y=y+1),
+			new Position(x=x-1,y=y)
 		]
 	}
 }

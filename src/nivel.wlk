@@ -23,20 +23,20 @@ object nivel {
 	//	VISUALES
 	/*  
 	 * Se le dice 'visual object' a todos los objetos que queremos mostrar en pantalla.
-	 * Todo objeto visual deberá tener un atributo (o método getter) 'imagen' con el nombre del archivo de la imagen.
+	 * Todo objeto visual deberá tener un método (o propiedad) 'image()' que retorne el nombre del archivo de la imagen.
 	 * Para dibujar el objeto en pantalla se puede agregar al tablero por medio del método 'drawElement(visual)' 
 	 * 	que entienden las posiciones. Por ejemplo:
 	 * 		var visual = object { 
-	 * 			val imagen = "una_imagen.png" 
+	 * 			const property image = "una_imagen.png" 
 	 * 		}
-	 * 		new Position(0,0).drawElement(visual)
+	 * 		new Position(x=0,y=0).drawElement(visual)
 	 *  
-	 * Si queremos que nuestro objeto visual conozca en qué posición está del tablero, puede tener como atributo
-	 * 	(o método getter) 'posicion' al objeto posición. En dicho caso, se puede agregar al tablero a través del
+	 * Si queremos que nuestro objeto visual conozca en qué posición está del tablero, puede tener un método
+	 * 	(o o propiedad) 'position()' que retorne un objeto posición. En dicho caso, se puede agregar al tablero a través del
 	 * 	método 'addVisual(visual)' que entiende game. Por ejemplo:
 	 * 		var visual = object { 
-	 * 			val imagen = "una_imagen.png" 
-	 * 			var posicion = new Position(0,0)
+	 * 			const property imagen = "una_imagen.png" 
+	 * 			var property position = new Position(0,0)
 	 * 		}
 	 * 		game.addVisual(visual)
 	 * 
@@ -54,10 +54,10 @@ object nivel {
 		const ancho = game.width() - 1
 		const largo = game.height() - 1
 		
-		(1 .. ancho-1).forEach { n => arbustoFactory.draw(new ArbustoAbajo(),new Position(n, 0)) } // bordeAbajo
-		(1 .. ancho-1).forEach { n => arbustoFactory.draw(new ArbustoArriba(), new Position(n, largo)) } // bordeArriba 
-		(0 .. largo).forEach { n => arbustoFactory.draw(new ArbustoIzquierda(), new Position(0, n)) } // bordeIzq 
-		(0 .. largo).forEach { n => arbustoFactory.draw(new ArbustoDerecha(), new Position(ancho, n)) } // bordeDer
+		(1 .. ancho-1).forEach { n => arbustoFactory.draw(new ArbustoAbajo(),new Position(x=n, y=0)) } // bordeAbajo
+		(1 .. ancho-1).forEach { n => arbustoFactory.draw(new ArbustoArriba(), new Position(x=n, y=largo)) } // bordeArriba 
+		(0 .. largo).forEach { n => arbustoFactory.draw(new ArbustoIzquierda(), new Position(x=0, y=n)) } // bordeIzq 
+		(0 .. largo).forEach { n => arbustoFactory.draw(new ArbustoDerecha(), new Position(x=ancho, y=n)) } // bordeDer
 	
 		arbustoFactory.drawVerticalBlock(5, 5)
 		[1, 9].forEach{ n => 
@@ -74,9 +74,9 @@ object nivel {
 		
 		game.addVisual(granero)
 		
-		new Position(3,2).drawElement(maizEjemplo)
+		new Position(x=3,y=2).drawElement(maizEjemplo)
 		
-		tractor.init(new Position(9,4))
+		tractor.init(new Position(x=9,y=4))
 		game.addVisual(tractor)
 			
 	//	TECLADO

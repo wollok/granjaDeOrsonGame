@@ -25,7 +25,7 @@ object tractor {
 		position = granjero.posicion()
 		position.moveLeft(1)
 		position.say(granjero, "Muchas gracias por ayudarme, nos vemos!")
-		n++
+		n+=1
 		if (n>5) game.stop()
 	}
 }
