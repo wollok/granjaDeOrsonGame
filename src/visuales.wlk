@@ -1,15 +1,16 @@
+import wollok.game.*
 import granjero.*
 
 object granjeroVisual {
-	const imagen = "granjero.png"
-	var posicion = new Position(2,9)
+	const image = "granjero.png"
+	var position = new Position(2,9)
 	var elemento
 	
 	method usarElemento() { elemento.usate(self) }
 	
 	method planta(cultivo) {
 		self.restaOro(25)
-		posicion.clone().drawElement(cultivo)
+		position.clone().drawElement(cultivo)
 	}
 	
 	method rega() { granjero.rega(self.cultivosDebajo().head()) }
@@ -22,11 +23,11 @@ object granjeroVisual {
 		if (elemento != null)
 			elemento.soltar() 
 		elemento = agarrable
-		agarrable.posicion(posicion)
+		agarrable.posicion(position)
 	}
 
 	method cultivosDebajo() {
-		var cultivos = posicion.allElements()
+		var cultivos = position.allElements()
 			.filter { obj => !(obj == self) }
 			.filter { obj => !(obj == elemento) }
 			
@@ -36,6 +37,6 @@ object granjeroVisual {
 		return cultivos
 	}
 	
-	method posicion() = posicion
+	method posicion() = position
 	method elemento() = elemento
 }

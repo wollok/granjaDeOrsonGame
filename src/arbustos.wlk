@@ -1,5 +1,5 @@
 class Arbusto {
-	const imagen = "arbusto.png"
+	const image = "arbusto.png"
 }
 
 class ArbustoArriba inherits Arbusto {

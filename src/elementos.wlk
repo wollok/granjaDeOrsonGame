@@ -1,3 +1,4 @@
+import wollok.game.*
 import exceptions.*
 import cultivos.*
 
@@ -19,23 +20,23 @@ object espada inherits Elemento(new Position(2,2), "espada.png") {
 }
 
 class Elemento {
-	const imagen
+	const image
 	const _posicionInicial
-	var posicion 
+	var position 
 	
 	constructor(posicionInicial, _imagen) {
-		imagen = _imagen
+		image = _imagen
 		_posicionInicial = posicionInicial
-		posicion = posicionInicial
+		position = posicionInicial
 	}
 	
 	method soltar() { 
-		posicion = _posicionInicial
+		position = _posicionInicial
 	}
 	
-	method posicion() = posicion
+	method posicion() = position
 
 	method posicion(p) { 
-		posicion = p
+		position = p
 	}
 }

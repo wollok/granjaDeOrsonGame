@@ -1,8 +1,9 @@
+import wollok.game.*
 import exceptions.*
 
 object granero { 
-	const imagen = "granero.png"
-	const posicion = new Position(9,9)
+	const image = "granero.png"
+	const position = new Position(9,9)
 	
 	/*
 	 * Cuando se le pride al granero que plante un cultivo éste lo planta a su alrededor.
@@ -37,8 +38,8 @@ object granero {
 	
 	
 	method borde() {
-		var x = posicion.x()
-		var y = posicion.y()
+		var x = position.x()
+		var y = position.y()
 		return [
 			new Position(x-1,y-1),
 			new Position(x,y-1),

@@ -1,10 +1,11 @@
+import wollok.game.*
 object tractor {
 	var n = 0
-	var imagen = "tractor.png"	
-	var posicion
+	var image = "tractor.png"	
+	var position
 	
 	method init(_posicion) {
-		posicion = _posicion
+		position = _posicion
 		_posicion.clear()
 	}
 	
@@ -20,10 +21,10 @@ object tractor {
 	}
 	
 	method win(granjero) {
-		imagen = "granjero_tractor.png"
-		posicion = granjero.posicion()
-		posicion.moveLeft(1)
-		posicion.say(granjero, "Muchas gracias por ayudarme, nos vemos!")
+		image = "granjero_tractor.png"
+		position = granjero.posicion()
+		position.moveLeft(1)
+		position.say(granjero, "Muchas gracias por ayudarme, nos vemos!")
 		n++
 		if (n>5) game.stop()
 	}

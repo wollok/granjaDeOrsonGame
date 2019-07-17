@@ -1,3 +1,4 @@
+import wollok.game.*
 import granjero.*
 import exceptions.*
 
@@ -12,7 +13,7 @@ class Cultivo {
 
 	method oroGanado() { return 0 }
 	
-	method imagen() { return "semilla.png" }
+	method image() { return "semilla.png" }
 
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -45,5 +46,5 @@ class Tomate inherits Cultivo {
 object maizEjemplo inherits Cultivo("maiz", 150) {
 	override method oroGanado() = 150
 	
-	override method imagen() = "maiz_adulto.png"
+	override method image() = "maiz_adulto.png"
 }
