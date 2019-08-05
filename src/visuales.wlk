@@ -2,9 +2,9 @@ import wollok.game.*
 import granjero.*
 
 object granjeroVisual {
-	const image = "granjero.png"
-	var position = new Position(2,9)
-	var elemento
+	const property image = "granjero.png"
+	var property position = game.at(2,9)
+	var property elemento
 	
 	method usarElemento() { elemento.usate(self) }
 	
@@ -23,7 +23,7 @@ object granjeroVisual {
 		if (elemento != null)
 			elemento.soltar() 
 		elemento = agarrable
-		agarrable.posicion(position)
+		agarrable.position(position)
 	}
 
 	method cultivosDebajo() {
@@ -32,11 +32,9 @@ object granjeroVisual {
 			.filter { obj => !(obj == elemento) }
 			
 		if (cultivos.isEmpty())
-			throw new Exception("No hay cultivos aquí")
+			throw new Exception(message="No hay cultivos aquí")
 		
 		return cultivos
 	}
 	
-	method posicion() = position
-	method elemento() = elemento
 }

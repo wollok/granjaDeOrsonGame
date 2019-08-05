@@ -8,6 +8,7 @@ import elementos.*
 import tractor.*
 import factories.*
 import visuales.*
+import movimiento.*
 
 object nivel {
 
@@ -68,7 +69,8 @@ object nivel {
 	
 		var elementos = [bolsa, espada, regadera]
 		
-	 	game.addVisualCharacter(granjeroVisual)
+	 	game.addVisual(granjeroVisual)
+	 	movimiento.configurarFlechas(granjeroVisual)
 		
 		elementos.forEach { it => game.addVisual(it) }
 		
@@ -111,7 +113,7 @@ object nivel {
 		elementos.forEach { it =>
 			game.whenCollideDo(it, { g =>
 				if (gv == g)
-					if (!(granjeroVisual.posicion() === it.posicion()))
+					if (!(granjeroVisual.position() === it.position()))
 						granjeroVisual.agarrar(it)
 			})
 		}

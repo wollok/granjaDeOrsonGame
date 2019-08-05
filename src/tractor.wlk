@@ -4,9 +4,9 @@ object tractor {
 	var image = "tractor.png"	
 	var position
 	
-	method init(_posicion) {
-		position = _posicion
-		_posicion.clear()
+	method init(_position) {
+		position = _position
+		_position.clear()
 	}
 	
 	method comprate(granjero) {
@@ -15,15 +15,15 @@ object tractor {
 				granjero.restaOro(800)
 			self.win(granjero)
 		} catch e {
-			granjero.posicion().moveRight(1)
+			granjero.position(granjero.position().right(1))
 			throw e	
 		}
 	}
 	
 	method win(granjero) {
 		image = "granjero_tractor.png"
-		position = granjero.posicion()
-		position.moveLeft(1)
+		position = granjero.position()
+		position = position.left(1)
 		position.say(granjero, "Muchas gracias por ayudarme, nos vemos!")
 		n+=1
 		if (n>5) game.stop()

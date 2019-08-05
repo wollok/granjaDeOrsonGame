@@ -2,8 +2,8 @@ import wollok.game.*
 import exceptions.*
 
 object granero { 
-	const image = "granero.png"
-	const position = new Position(x=9,y=9)
+	const property image = "granero.png"
+	const property position = game.at(9,9)
 	
 	/*
 	 * Cuando se le pride al granero que plante un cultivo éste lo planta a su alrededor.
@@ -12,7 +12,7 @@ object granero {
 	 * las posiciones.
 	 */
 	method planta(_cultivo) {
-		throw new MethodNotImplemented("planta", self)
+		throw new MethodNotImplemented(methodName= "planta", aObject = self)
 	}
 	
 	
@@ -20,7 +20,7 @@ object granero {
 	 * Debe hacer crecer todos los cultivos que plantó el granero
 	 */
 	method rega() { 
-		throw new MethodNotImplemented("rega", self)
+		throw new MethodNotImplemented(methodName="rega", aObject = self)
 	}
 
 
@@ -28,7 +28,7 @@ object granero {
 	 * Debe cosechar todos los cultivos que plantó el granero
 	 */
 	method cosecha() { 
-		throw new MethodNotImplemented("cosecha", self)
+		throw new MethodNotImplemented(methodName="cosecha", aObject = self)
 	}
 	
 

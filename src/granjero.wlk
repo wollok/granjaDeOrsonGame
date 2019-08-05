@@ -4,12 +4,13 @@ import exceptions.*
 
 object granjero {
 	var oro = 0
-
+	var property position
 	/*
 	 * Este método debe retornar la cantidad de oro que posee el granjero. 
 	 */	
 	method oro() {
-		return throw new MethodNotImplemented("oro", self)
+//		return throw new MethodNotImplemented(methodName="oro", aObject = self)
+    return oro
 	}
 	
 	
@@ -17,7 +18,7 @@ object granjero {
 	 * Para cosechar un cultivo basta con enviarle el mensaje 'cosechate()'.
 	 */	
 	method cosecha(cultivo) {
-		throw new MethodNotImplemented("cosecha", self)
+		throw new MethodNotImplemented(methodName="cosecha", aObject = self)
 	}
 
 
@@ -25,7 +26,7 @@ object granjero {
 	 * Al regar un cultivo éste crece. Mientras más crezca, más oro dará cuando se coseche.
 	 */	
 	method rega(cultivo) {
-		throw new MethodNotImplemented("rega", self)
+		throw new MethodNotImplemented(methodName="rega", aObject = self)
 	}
 	
 	
@@ -38,7 +39,7 @@ object granjero {
 
 	method restaOro(cantidad) {
 		if (cantidad > oro)
-			throw new Exception("No tengo suficiente oro para eso")
+			throw new Exception(message = "No tengo suficiente oro para eso")
 			
 		oro -= cantidad
 	}

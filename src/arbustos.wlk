@@ -4,24 +4,24 @@ class Arbusto {
 
 class ArbustoArriba inherits Arbusto {
 	method empuja(granjero) {
-		granjero.posicion().moveDown(1)
+		granjero.position(granjero.position().down(1))
 	}
 }
 
 class ArbustoAbajo inherits Arbusto {
 	method empuja(granjero) {
-		granjero.posicion().moveUp(1)
+		granjero.position(granjero.position().up(1))
 	}
 }
 
 class ArbustoIzquierda inherits Arbusto {
 	method empuja(granjero) {
-		granjero.posicion().moveRight(1)
+		granjero.position(granjero.position().right(1))
 	}
 }
 
 class ArbustoDerecha inherits Arbusto {
 	method empuja(granjero) {
-		granjero.posicion().moveLeft(1)
+		granjero.position(granjero.position().left(1))
 	}
 }
