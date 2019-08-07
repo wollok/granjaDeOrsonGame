@@ -113,7 +113,7 @@ object nivel {
 		elementos.forEach { it =>
 			game.whenCollideDo(it, { g =>
 				if (gv == g)
-					if (!(granjeroVisual.position() === it.position()))
+					if (!(granjeroVisual.position() == it.position()))
 						granjeroVisual.agarrar(it)
 			})
 		}
@@ -123,7 +123,7 @@ object nivel {
 		var mensaje = "Ya quiero irme de esta granja."
 			
 		try {
-			granero.planta(new Maiz())
+			granero.planta(new Cultivo(especie = maiz))
 			granero.rega()
 			granero.cosecha()
 			granjero.restaOro(granjero.oro())
@@ -135,7 +135,7 @@ object nivel {
 		catch e {}
 		
 		try {
-			granjero.rega(new Maiz())
+			granjero.rega(new Cultivo(especie = maiz))
 		}
 		catch e : MethodNotImplemented {
 			arbustoFactory.drawHorizontalBlock(7, 5)

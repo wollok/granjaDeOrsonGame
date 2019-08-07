@@ -6,7 +6,7 @@ object bolsa inherits Elemento(game.at(2,9), "bolsa.png") {
 
 	method usate(plantador) { plantador.planta(self.cultivo()) }
 	
-	method cultivo() = [new Trigo(), new Maiz(), new Tomate()].anyOne()
+	method cultivo() = [new Cultivo(especie = trigo), new Cultivo(especie = maiz), new Cultivo(especie = tomate)].anyOne()
 }
 
 object regadera inherits Elemento(game.at(9,2), "regadera.png") {
