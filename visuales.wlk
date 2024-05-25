@@ -3,8 +3,8 @@ import granjero.*
 
 object granjeroVisual {
 	const property image = "granjero.png"
-	var property position = game.at(2,9)
-	var property elemento
+	var property position = game.at(2, 9)
+	var property elemento = game.at(0, 0)
 	
 	method usarElemento() { elemento.usate(self) }
 	
@@ -27,9 +27,8 @@ object granjeroVisual {
 	}
 
 	method cultivosDebajo() {
-		var cultivos = position.allElements()
-			.filter { obj => !(obj == self) }
-			.filter { obj => !(obj == elemento) }
+		const cultivos = position.allElements()
+			.filter { cultivo => !(cultivo == self) && cultivo != elemento }
 			
 		if (cultivos.isEmpty())
 			throw new Exception(message="No hay cultivos aquí")

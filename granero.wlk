@@ -12,7 +12,7 @@ object granero {
 	 * las posiciones.
 	 */
 	method planta(_cultivo) {
-		throw new MethodNotImplemented(methodName= "planta", aObject = self)
+		throw new MethodNotImplemented(methodName= "planta", anObject = self)
 	}
 	
 	
@@ -20,7 +20,7 @@ object granero {
 	 * Debe hacer crecer todos los cultivos que plantó el granero
 	 */
 	method rega() { 
-		throw new MethodNotImplemented(methodName="rega", aObject = self)
+		throw new MethodNotImplemented(methodName="rega", anObject = self)
 	}
 
 
@@ -28,7 +28,7 @@ object granero {
 	 * Debe cosechar todos los cultivos que plantó el granero
 	 */
 	method cosecha() { 
-		throw new MethodNotImplemented(methodName="cosecha", aObject = self)
+		throw new MethodNotImplemented(methodName="cosecha", anObject = self)
 	}
 	
 
@@ -38,8 +38,8 @@ object granero {
 	
 	
 	method borde() {
-		var x = position.x()
-		var y = position.y()
+		const x = position.x()
+		const y = position.y()
 		return [
 			new Position(x=x-1,y=y-1),
 			new Position(x=x,y=y-1),

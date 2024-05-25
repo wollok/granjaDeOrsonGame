@@ -1,13 +1,8 @@
 import wollok.game.*
 object tractor {
 	var n = 0
-	var image = "tractor.png"	
-	var position
-	
-	method init(_position) {
-		position = _position
-		_position.clear()
-	}
+	var property image = "tractor.png"	
+	var property position = new Position(x = 9, y = 4)
 	
 	method comprate(granjero) {
 		try {

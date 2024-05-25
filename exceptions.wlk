@@ -11,8 +11,9 @@ object methodNotImplemented inherits Exception (message = "Falta implementar el 
 }
 */
 class MethodNotImplemented inherits Exception {
-	var methodName
-	var aObject
-	override method message() = "Falta implementar el método '" + methodName + "' en " + aObject  
+	const methodName
+	const anObject
+
+	override method message() = "Falta implementar el método '" + methodName + "' en " + anObject  
 
 }

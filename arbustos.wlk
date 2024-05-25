@@ -1,5 +1,6 @@
 class Arbusto {
-	const image = "arbusto.png"
+	const property image = "arbusto.png"
+	var property position
 }
 
 class ArbustoArriba inherits Arbusto {

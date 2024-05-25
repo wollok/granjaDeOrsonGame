@@ -47,6 +47,7 @@ const tomate = new Especie(nombre = "tomate",precio = 50)
 
 object maizEjemplo inherits Cultivo(especie = maiz ) {
 	override method oroGanado() = 150
+	var property position = new Position(x = 3, y = 2) 
 	
 	override method image() = "maiz_adulto.png"
 }

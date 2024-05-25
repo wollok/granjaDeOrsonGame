@@ -1,10 +1,9 @@
 import cultivos.*
-import elementos.*
 import exceptions.*
 
 object granjero {
 	var oro = 0
-	var property position
+	var property position = new Position(x = 0, y = 0)
 	/*
 	 * Este método debe retornar la cantidad de oro que posee el granjero. 
 	 */	
@@ -18,7 +17,7 @@ object granjero {
 	 * Para cosechar un cultivo basta con enviarle el mensaje 'cosechate()'.
 	 */	
 	method cosecha(cultivo) {
-		throw new MethodNotImplemented(methodName="cosecha", aObject = self)
+		throw new MethodNotImplemented(methodName="cosecha", anObject = self)
 	}
 
 
@@ -26,7 +25,7 @@ object granjero {
 	 * Al regar un cultivo éste crece. Mientras más crezca, más oro dará cuando se coseche.
 	 */	
 	method rega(cultivo) {
-		throw new MethodNotImplemented(methodName="rega", aObject = self)
+		throw new MethodNotImplemented(methodName="rega", anObject = self)
 	}
 	
 	
